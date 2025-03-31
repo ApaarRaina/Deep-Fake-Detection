@@ -98,7 +98,7 @@ model=Classifier(972)
 torch.manual_seed(123)
 
 criterion=nn.CrossEntropyLoss()
-optimizer=torch.optim.Adam(model.parameters(),lr=0.001)
+optimizer=torch.optim.Adam(model.parameters(),lr=0.01)
 
 epochs=30
 
@@ -112,7 +112,7 @@ for i in range(epochs):
         inputs,labels=batch[0],batch[1]
         logits=model(inputs)
         loss=criterion(logits,labels)
-        train_loss+=loss
+        train_loss+=loss.item()
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
@@ -120,11 +120,12 @@ for i in range(epochs):
 
     model.eval()
     val_loss=0
-    for batch in val_loader:
-        inputs,labels=batch[0],batch[1]
-        logits=model(inputs)
-        loss=criterion(logits,labels)
-        val_loss+=loss
+    with torch.no_grad():
+       for batch in val_loader:
+          inputs,labels=batch[0],batch[1]
+          logits=model(inputs)
+          loss=criterion(logits,labels)
+          val_loss+=loss.item()
 
     val_losses.append(val_loss)
 
@@ -140,3 +141,5 @@ plt.legend(loc='Upper Left')
 plt.xlabel("Epochs")
 plt.ylabel("Loss")
 plt.show()
+
+torch.save(model.state_dict(),"model.pt")
