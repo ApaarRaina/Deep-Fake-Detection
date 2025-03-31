@@ -23,11 +23,11 @@ for i in range(len(df)):
 
     img=clahe.apply(img) #brightness adjust
 
-    # Construct new path: Replace "train/" with "processed_train/"
+
     relative_path = os.path.relpath(path, start='test')  # e.g., 'real/31355.jpg'
     new_path = os.path.join(output_dir, relative_path)  # e.g., 'processed_train/real/31355.jpg'
 
-    # Ensure the subdirectory exists
+
     os.makedirs(os.path.dirname(new_path), exist_ok=True)  # Creates 'processed_train/real/'
 
     # Save the processed image
