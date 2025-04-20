@@ -4,7 +4,7 @@ The paper link is given below.
 The preprocess.py I have converted the images to grayscale and adjusted the brightness of each image using CLAHE.
 
 
-The model is incomplete I implemented is incompleted for now.
+The model is incomplete for now.
 
 
 Hyperparameter tuning is still left.
