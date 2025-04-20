@@ -3,6 +3,7 @@ The process to create it is described in the IEEE paper titled  Deep Fake Face D
 The paper link is given below.
 The preprocess.py I have converted the images to grayscale and adjusted the brightness of each image using CLAHE.
 The model is incomplete I implemented is incompleted for now
+Hyperparameter tuning is still left.
 
 
 Access the paper using this link
